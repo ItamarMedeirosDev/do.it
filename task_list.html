@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="shortcut icon" href="check.png" type="image/x-icon">
+    <script src="{% static 'script.jsx' %}"></script>
+    <title>Minhas Tarefas - do.it</title>
+    <meta name="description" content="Gerencie suas tarefas diárias de forma simples e prática no do.it." />
+</head>
+<body class="bg" style="padding-top: 3.5rem;">
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
+        <div class="nav-container">
+            <div class="nav-logo" aria-label="Logo do.it">do<span class="span-verde">.</span>it</div>
+            <div class="nav-links">
+                <a href="{% url 'logout' %}" class="nav-btn" role="link">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <h1>do<span class="span-verde">.</span>it</h1>
+    </header>
+    <main class="container" role="main" style="display: block;">
+        <form method="POST" action="{% url 'tasks:add_task' %}" class="form-add-tarefa" aria-label="Adicionar nova tarefa">
+            {% csrf_token %}
+            <label for="input-add-tarefa" class="sr-only">Nome da tarefa</label>
+            <input
+                type="text"
+                name="title"
+                id="input-add-tarefa"
+                required
+                placeholder="nome da tarefa"
+                autocomplete="off"
+                aria-required="true"
+            />
+            <button type="submit" aria-label="Adicionar tarefa">+</button>
+        </form>
+
+        <ul>
+            {% for task in tasks %}
+            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                <form method="POST" action="{% url 'tasks:toggle_complete' task.id %}" aria-label="Marcar tarefa como concluída">
+                    {% csrf_token %}
+                    <input
+                        type="checkbox"
+                        onchange="this.form.submit()"
+                        {% if task.completed %}checked{% endif %}
+                        title="Marcar como concluída"
+                        aria-checked="{% if task.completed %}true{% else %}false{% endif %}"
+                    />
+                </form>
+                <span style="text-decoration: {% if task.completed %}line-through{% else %}none{% endif %};" aria-live="polite">
+                    {{ task.title }}
+                </span>
+                <form method="POST" action="{% url 'tasks:delete_task' task.id %}" aria-label="Deletar tarefa">
+                    {% csrf_token %}
+                    <button
+                        type="submit"
+                        title="Deletar tarefa"
+                        style="background:none; border:none; color:#c00; cursor:pointer; font-weight:bold;"
+                        aria-label="Deletar tarefa {{ task.title }}"
+                    >x</button>
+                </form>
+            </li>
+
+            {% empty %}
+                <li>Sem tarefas cadastradas.</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>

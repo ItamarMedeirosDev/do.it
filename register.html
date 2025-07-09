@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="shortcut icon" href="check.png" type="image/x-icon">
+    <script src="{% static 'script.jsx' %}"></script>
+    <title>Registrar - do.it</title>
+    <meta name="description" content="Crie uma nova conta no do.it para gerenciar suas tarefas de forma prática." />
+</head>
+<body class="bg" style="padding-top: 3.5rem;">
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
+        <div class="nav-container">
+            <div class="nav-logo" aria-label="Logo do.it">do<span class="span-verde">.</span>it</div>
+            <div class="nav-links">
+                <a href="{% url 'login' %}" class="nav-btn" role="link">Login</a>
+                <a href="{% url 'home' %}" class="nav-btn" role="link">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="form-container" role="main">
+        <h2>Registrar nova conta</h2>
+        <form method="POST" novalidate aria-label="Formulário de registro de nova conta">
+            {% csrf_token %}
+
+            <p>
+                <label for="{{ form.email.id_for_label }}">Email</label><br>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <small id="email_error" class="erro-campo" role="alert">{{ form.email.errors.0 }}</small>
+                {% endif %}
+            </p>
+
+            <p>
+                <label for="{{ form.password1.id_for_label }}">Senha</label><br>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <small id="password1_error" class="erro-campo" role="alert">{{ form.password1.errors.0 }}</small>
+                {% endif %}
+            </p>
+
+            <p>
+                <label for="{{ form.password2.id_for_label }}">Confirme a senha</label><br>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <small id="password2_error" class="erro-campo" role="alert">{{ form.password2.errors.0 }}</small>
+                {% endif %}
+            </p>
+
+            <button type="submit" class="botao">Registrar</button>
+        </form>
+        <p>Já tem conta? <a href="{% url 'login' %}">Faça login</a></p>
+    </main>
+
+</body>
+</html>

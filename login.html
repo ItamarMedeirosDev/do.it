@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="shortcut icon" href="check.png" type="image/x-icon">
+    <script src="{% static 'script.jsx' %}"></script>
+    <title>Login - do.it</title>
+    <meta name="description" content="Faça login na sua conta do.it para gerenciar suas tarefas de forma simples e eficiente." />
+</head>
+<body class="bg">
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
+        <div class="nav-container">
+            <div class="nav-logo" aria-label="Logo do.it">do<span class="span-verde">.</span>it</div>
+            <div class="nav-links">
+                <a href="{% url 'register' %}" class="nav-btn" role="link">Registrar</a>
+                <a href="{% url 'home' %}" class="nav-btn" role="link">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="form-container" role="main">
+        <h2>Login</h2>
+        <form method="POST" novalidate class="form-login" aria-label="Formulário de login">
+            {% csrf_token %}
+
+            <label for="id_email" class="sr-only">Email</label>
+            <input
+                type="email"
+                name="email"
+                id="id_email"
+                placeholder="Email"
+                required
+                aria-required="true"
+                aria-describedby="email_error"
+            />
+            {% if form_errors.email %}
+                <div id="email_error" class="erro-campo" role="alert">{{ form_errors.email }}</div>
+            {% endif %}
+
+            <label for="id_password" class="sr-only">Senha</label>
+            <input
+                type="password"
+                name="password"
+                id="id_password"
+                placeholder="Senha"
+                required
+                aria-required="true"
+                aria-describedby="password_error"
+            />
+            {% if form_errors.password %}
+                <div id="password_error" class="erro-campo" role="alert">{{ form_errors.password }}</div>
+            {% endif %}
+
+            {% if form_errors.non_field_errors %}
+                <div class="erro-campo" role="alert">{{ form_errors.non_field_errors }}</div>
+            {% endif %}
+
+            <button type="submit" class="botao">Entrar</button>
+        </form>
+        <p>Não tem conta? <a href="{% url 'register' %}">Registre-se</a></p>
+    </main>
+
+</body>
+</html>

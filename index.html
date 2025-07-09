@@ -1,36 +1,61 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>do.it | Lista de tarefas</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="shortcut icon" href="{% static 'check.png' %}" type="image/x-icon">
+    <title>do.it | Lista de Tarefas</title>
+    <meta name="description" content="Gerencie suas tarefas diárias de forma simples e rápida com do.it." />
 </head>
-<body class="bg">
-    <header>
+<body class="bg" style="padding-top: 3.5rem;">
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
+        <div class="nav-container">
+            <div class="nav-logo" aria-label="Logo do.it">do<span class="span-verde">.</span>it</div>
+            <div class="nav-links">
+                <a href="{% url 'login' %}" id="login" class="nav-btn" role="link">Login</a>
+                <a href="{% url 'register' %}" class="nav-btn" role="link">Registrar</a>
+            </div>
+        </div>
+    </nav>
+
+    <header role="banner">
         <h1>do<span class="span-verde">.</span>it</h1>
-        <button type="button" id="add-lista">criar lista de tarefas +</button>
+        <button type="button" id="add-lista" aria-label="Criar nova lista de tarefas">criar lista de tarefas +</button>
     </header>
-    <div class="container">
+
+    <main role="main" class="container">
         <button type="button" class="resume">-</button>
-        <form class="form-add-tarefa">
-            <input type="text" required placeholder="nome da tarefa" id="input-add-tarefa">
-            <button type="submit">+</button>
+
+        <form class="form-add-tarefa" aria-label="Adicionar nova tarefa">
+            <label for="input-add-tarefa" class="sr-only">Nome da tarefa</label>
+            <input
+                type="text"
+                required
+                placeholder="nome da tarefa"
+                id="input-add-tarefa"
+                aria-required="true"
+                autocomplete="off"
+            />
+            <button type="submit" aria-label="Adicionar tarefa">+</button>
         </form>
-        <form class="form-tarefas-lista">
+
+        <form class="form-tarefas-lista" aria-label="Lista de tarefas">
             <ul>
-                <li>
-                    
-                </li>
+                <li aria-live="polite" aria-atomic="true"></li>
             </ul>
         </form>
-        
-    </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="script.jsx"></script>
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>

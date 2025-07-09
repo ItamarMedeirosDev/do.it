@@ -1,0 +1,274 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: white;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    text-align: center;
+}
+.bg{
+    background-color: #1F1F1F;
+}
+
+h1{
+    font-size: 4rem;
+    font-weight: 400;
+    margin: 80px 0px 10px 0px;
+    line-height: 1.25;
+}
+header button{
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #0C2400;
+    background-color: #6BED2E;
+    font-weight: 500;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+header button:hover{
+    background-color: #49aa1d;
+}
+.span-verde{
+    color: #6BED2E;
+}
+.resume{
+    background-color: #ed2e2e;
+    color: #240000;
+    border: none;
+    padding: 2px 8px;
+    border-radius: 1px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.resume:hover{
+    background-color: #a01212;
+}
+.container{
+    max-width: 600px;
+    background-color: #272727;
+    margin: 40px auto;
+    padding: 48px;
+    box-sizing: border-box;
+    display: none;
+    position: relative;
+}
+.form-add-tarefa{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 48px;
+    
+}
+
+.form-add-tarefa input{
+    border: none;
+    height: 50px;
+    width: 300px;
+    padding:5px;
+    border-radius: 5px; 
+    text-align: center;
+    background-color: #D9D9D9;
+    color: #252525;
+    font-size: 1rem;   
+}
+.form-add-tarefa button{
+    background-color: #6BED2E;
+    color: #0C2400;
+    border: none;
+    padding: 0 30px;
+    border-radius: 5px;
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.form-add-tarefa button:hover{
+    background-color: #49aa1d;
+}
+ul{
+    list-style: none;
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+ul li input.tarefa {
+    margin-right: 10px;
+}
+
+ul li label {
+    color: white;
+    font-size: 1rem;
+}
+
+/* ADIÇÕES PARA BACKEND */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.8em;
+    color: var(--cor-principal); /* ou uma cor que combine */
+    
+}
+
+.nav-links a.nav-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    padding: 0.3rem 0.8rem;
+    margin-left: 1rem;
+    border: 1px solid var(--cor-principal);
+    border-radius: 5px;
+    color: var(--cor-principal);
+    background: transparent;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a.nav-btn:hover {
+    background-color: var(--cor-principal);
+    color: white;
+}
+
+
+
+
+.form-container {
+    max-width: 600px;
+    background-color: #272727;
+    margin: 40px auto;
+    padding: 48px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* Formulário e botões conforme padrão .form-add-tarefa */
+.form-container form {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 48px;
+    flex-wrap: wrap; /* para responsividade */
+}
+
+.form-container form input[type="email"],
+.form-container form input[type="password"],
+.form-container form input[type="text"] {
+    border: none;
+    height: 50px;
+    width: 300px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #D9D9D9;
+    color: #252525;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-container form button {
+    background-color: #6BED2E;
+    color: #0C2400;
+    border: none;
+    padding: 0 30px;
+    border-radius: 5px;
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container form button:hover {
+    background-color: #49aa1d;
+}
+
+/* Removendo marcadores e padding dos ul, para qualquer lista dentro do form-container */
+.form-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.form-login input {
+    width: 100%;
+    max-width: 300px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #D9D9D9;
+    color: #252525;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.form-login button {
+    background-color: #6BED2E;
+    color: #0C2400;
+    border: none;
+    padding: 0 30px;
+    border-radius: 5px;
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+}
+
+.form-login button:hover {
+    background-color: #49aa1d;
+}
+
+.erro-campo {
+    color: #f88;
+    font-size: 0.8rem;
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+}
+
+
